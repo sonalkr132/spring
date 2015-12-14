@@ -3,7 +3,6 @@ require "spring/configuration"
 
 module Spring
   class << self
-    attr_accessor :watch_interval
     attr_writer :watcher
     attr_reader :watch_method
   end
@@ -17,7 +16,6 @@ module Spring
     end
   end
 
-  self.watch_interval = 0.2
   self.watch_method = :polling
 
   def self.watcher
