@@ -244,6 +244,13 @@ module Spring
         end
       end
 
+      test "spring commands when spring gem is missing" do
+        File.write(app.gemfile, app.gemfile.read.gsub(/gem 'spring.*/, ""))
+        app.run "bundle install"
+        assert_success "spring -v", stdout: "Spring version"
+        assert_success "spring help", stdout: "Usage: spring COMMAND [ARGS]"
+      end
+
       test "binstub when spring binary is missing" do
         begin
           File.rename(app.path("bin/spring"), app.path("bin/spring.bak"))
