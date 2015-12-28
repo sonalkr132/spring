@@ -82,6 +82,10 @@ module Spring
         end
       end
 
+      test "running rails console" do
+        assert_success "bin/rails c"
+      end
+
       test "help message when called without arguments" do
         assert_success "bin/spring", stdout: 'Usage: spring COMMAND [ARGS]'
         assert app.spring_env.server_running?
